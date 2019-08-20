@@ -11,21 +11,19 @@ namespace example_split_pdf_dotnet
     {
         // Splits a PDF document into two.
         // This code uses the DynamicPDF Merger for .NET product.
-        // Import the ceTe.DynamicPDF.Merger namespace for the PdfDocument and MergeDocument classes.
+        // Use the ceTe.DynamicPDF.Merger namespace for the PdfDocument and MergeDocument classes.
         static void Main(string[] args)
         {
             //Create a PdfDocument using the source PDF
             PdfDocument pdf = new PdfDocument(GetResourcePath("doc-a.pdf"));
 
             // Create MergeDocument and append the pages needed from main document to split
-            MergeDocument part1 = new MergeDocument();
-            part1.Append(pdf, 1, 1);
-            part1.Draw("part1.pdf");
+            MergeDocument part1 = new MergeDocument(pdf, 1, 2);
+            part1.Draw("output-part1.pdf");
 
             // Create MergeDocument and append the pages needed from main document to split
-            MergeDocument part2 = new MergeDocument();
-            part2.Append(pdf, 2, 1);
-            part2.Draw("part2.pdf");
+            MergeDocument part2 = new MergeDocument(pdf, 3, 2);
+            part2.Draw("output-part2.pdf");
         }
 
         // This is a helper function to get the full path to a file in the Resources folder.
